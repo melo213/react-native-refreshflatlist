@@ -22,7 +22,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import Util from './util'
+// import Util from './util'
 import Item from './Item'
 const { height, width } = Dimensions.get('window');
 import AndroidSwipeRefreshLayout from './AndroidSwipeRefreshLayout'
@@ -71,7 +71,7 @@ export default class FlatListTest extends Component {
   constructor() {
     super()
     this.state = {
-      _data: Util.makeData(),
+      _data: [],//Util.makeData(),
       rotation: new Animated.Value(0),
       rotationNomal: new Animated.Value(0),
       refreshState: RefreshState.pullToRefresh,
@@ -296,10 +296,10 @@ export default class FlatListTest extends Component {
     return this._scrollEndY == 0 ? true : false
   }
 
-  _renderItem = (data) => {
+  _renderItem = (item) => {
     return <Item 
       isTriggerPressFn={this._isTop} 
-      {...this.props} data={data} 
+      {...this.props} item={item} 
       toRenderItem={this.state.toRenderItem} />
   }
 
@@ -421,7 +421,7 @@ export default class FlatListTest extends Component {
               {...this.props}
               data={['1']}
               renderItem={this._renderItem}
-              keyExtractor={(v, i) => i}
+              keyExtractor={(v, i) => i.toString()}
               ListHeaderComponent={this.customRefreshView}
               onTouchEnd={this._onTouchEnd}
               onScrollBeginDrag={this._onScrollBeginDrag}
@@ -440,7 +440,7 @@ export default class FlatListTest extends Component {
               ref={flatList => { this._flatList = flatList }}
               {...this.props}
               data={data || this.state._data}
-              keyExtractor={(v, i) => i}
+              keyExtractor={(v, i) => i.toString()}
               renderItem={this._renderItem}
               ListHeaderComponent={this.customRefreshView}
               ListFooterComponent={this._ListFooterComponent}

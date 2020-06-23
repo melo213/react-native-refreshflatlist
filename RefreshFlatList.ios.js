@@ -21,7 +21,7 @@ import {
   Easing,
   InteractionManager
 } from 'react-native';
-import Util from './util'
+// import Util from './util'
 import Item from './Item'
 const { height, width } = Dimensions.get('window');
 
@@ -369,7 +369,7 @@ export default class RefreshFlatList extends Component {
           onScroll={this._onScroll}
           data={['1']}
           renderItem={this._renderItem}
-          keyExtractor={(v,i)=>i}
+          keyExtractor={(v,i)=>i.toString()}
           ListHeaderComponent={this.customRefreshView}
           style={[{...this.props.style},{marginTop: -this.headerHeight}]}
         />
@@ -383,7 +383,7 @@ export default class RefreshFlatList extends Component {
           onScroll={this._onScroll}
           data={data || this.state._data}
           renderItem={this._renderItem}
-          keyExtractor={(v,i)=>i}
+          keyExtractor={(v,i)=>i.toString()}
           ListHeaderComponent={this.customRefreshView}
           ListFooterComponent={this._ListFooterComponent}
           onEndReached={this._onEndReached} 
